@@ -144,6 +144,17 @@ bool solve_2SAT() {
     }
     return true;
 }
+
+void add_implication(int a, bool na, int b, bool nb) {
+    // na and nb signify whether a and b are to be negated 
+    a = 2 * a ^ na;
+    b = 2 * b ^ nb;
+    int neg_a = a ^ 1, neg_b = b ^ 1;
+    g[a].push_back(b);
+    g[neg_b].push_back(neg_a);
+    gt[b].push_back(a);
+    gt[neg_a].push_back(neg_b);
+}
 ```
 ## Practice Problems
  * [UVA: Rectangles](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3081)
